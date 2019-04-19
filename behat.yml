@@ -1,0 +1,30 @@
+default:
+  suites:
+    default:
+      paths:
+        - "%paths.base%/features"
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+        - Drupal\DrupalExtension\Context\MinkContext
+
+  extensions:
+    Behat\MinkExtension:
+      base_url: https://en.wikipedia.org/wiki/Main_Page
+      goutte: ~
+      selenium2:
+        browser: chrome
+        wd_host: localhost:4444/wd/hub
+    Drupal\DrupalExtension:
+      blackbox: ~
+
+ecommerce:
+  suites:
+    default:
+      filters:
+        tags: 'ecommerces'
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://demo.nopcommerce.com/
