@@ -180,4 +180,15 @@ class FeatureContext extends \Drupal\DrupalExtension\Context\RawDrupalContext im
             throw new Exception ("Block not found");
         }
     }
+
+    /**
+     * @Then /^I should not see the sub links under "([^"]*)"$/
+     */
+    public function iShouldNotSeeTheSubLinksUnder($text)
+    {
+        $sub_links = $this->getSession()->getPage()->findAll('css', ".last .sublist li a");
+        if(!empty($sub_links)) {
+            throw new Exception ("Sub links are coming under: ".$text);
+        }
+    }
 }

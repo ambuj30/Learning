@@ -21,7 +21,7 @@ Feature: Sidebar verification
     |Clothing      |
     |Accessories   |
     And I click "Digital downloads"
-    Then I should not see any sub link under "Digital downloads"
+    Then I should not see the sub links under "Digital downloads"
 
 
 

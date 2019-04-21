@@ -14,7 +14,7 @@ Feature: Search functionality
     Given I am on homepage
     And I fill in "Search store" with "Nike"
     And I press "Search"
-    And I should see the products which contains the text "floral"
+    And I should see the products which contains the text "Nike"
 
   @advanced_search
   Scenario: Verify the Advanced Search functionality

@@ -10,7 +10,7 @@ Feature: Sorting on Product Listing
 
     Examples:
           |display|
-          |2      |
+          |3      |
           |6      |
           |9      |
 
