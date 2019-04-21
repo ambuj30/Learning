@@ -92,19 +92,44 @@ class FeatureContext extends \Drupal\DrupalExtension\Context\RawDrupalContext im
     /**
      * @Given /^I should see the following sublinks "([^"]*)" under "([^"]*)"$/
      */
-    public function iShouldSeeTheFollowingSublinksUnder1($expected_links, $links_path)
+//    public function iShouldSeeTheFollowingSublinksUnder1($expected_links, $links_path)
+//    {
+//        $actual_links = " ";
+//        $sub_links = $this->getSession()->getPage()->findAll('css', $links_path);
+//        foreach ($sub_links as $sub_link) {
+//            $sub = $sub_link->getText();
+//            $actual_links = $actual_links . $sub;
+//        }
+//        $expected_links = str_replace(" ", "", $expected_links);
+//        if (trim($expected_links) != trim($actual_links)) {
+//            throw new Exception ("Incorrect sub-links");
+//        }
+//
+//    }
+
+    /**
+     * @Given /^I should see the following in "([^"]*)" region$/
+     */
+    public function iShouldSeeTheFollowingInRegion($links_path, TableNode $table)
     {
-        $actual_links = " ";
+
+        $expected_result = [];
+        $counts = 0;
+        $table = $table->getRows();
+        foreach ($table as $row) {
+            $expected_result[] = $row[0];
+        }
         $sub_links = $this->getSession()->getPage()->findAll('css', $links_path);
         foreach ($sub_links as $sub_link) {
-            $sub = $sub_link->getText();
-            $actual_links = $actual_links . $sub;
+            $sub[] = $sub_link->getText();
+            $counts = count($sub);
         }
-        $expected_links = str_replace(" ", "", $expected_links);
-        if (trim($expected_links) != trim($actual_links)) {
-            throw new Exception ("Incorrect sub-links");
-        }
+        for ($i = 0; $i < $counts ; $i++) {
+            if( $sub[$i] != $expected_result[$i]){
+                throw new Exception ("Sub links not found");
+            }
 
+        }
     }
 
 
