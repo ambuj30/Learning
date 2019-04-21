@@ -1,4 +1,4 @@
-#@ecommerces @javascript
+@ecommerces @javascript @profile
 Feature: Login Process
 
   Background: Login Process

@@ -1,13 +1,21 @@
 @ecommerces @javascript
 Feature: Sorting on Product Listing
 
-
   @sorting
-  Scenario: Verify the Sorting of contents
+  Scenario Outline: : Verify the Sorting of contents
     Given I am on homepage
     And I visit "/clothing"
-    And I select "3" from "products-pagesize"
-    Then I should not see more than "3" contents
+    And I select "<display>" from "products-pagesize"
+    Then I should not see more than "<display>" contents
+
+    Examples:
+          |display|
+          |2      |
+          |6      |
+          |9      |
+
+
+
 
 
 

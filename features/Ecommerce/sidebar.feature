@@ -11,15 +11,18 @@ Feature: Sidebar verification
     |Notebooks|
     |Software |
     And I click "Electronics"
-    And I should see the following under "Electronics" in sidebar
+    Then I should see the following under "Electronics" in sidebar
     |Camera & photo|
     |Cell phones   |
     |Others        |
     And I click "Apparel"
-    And I should see the following under "Apparel" in sidebar
+    Then I should see the following under "Apparel" in sidebar
     |Shoes         |
     |Clothing      |
     |Accessories   |
+    And I click "Digital downloads"
+    Then I should not see any sub link under "Digital downloads"
+
 
 
 

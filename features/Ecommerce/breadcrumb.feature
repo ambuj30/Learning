@@ -1,4 +1,4 @@
-@ecommerces @javascript
+@ecommerces @javascript @breadcrumb
 Feature: Verification of breadcrumb
 
   @breadcrumb
