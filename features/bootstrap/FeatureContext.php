@@ -30,6 +30,9 @@ class FeatureContext extends \Drupal\DrupalExtension\Context\RawDrupalContext im
     {
         $news = $this->getSession()->getPage()->findAll('css', $path);
         $news_count = count($news);
+        if (empty($news)) {
+            throw new Exception ("Block not found");
+        }
         if ($news_count != $number) {
             throw new Exception("Found Article are not equal to " . $number);
         }
@@ -124,13 +127,57 @@ class FeatureContext extends \Drupal\DrupalExtension\Context\RawDrupalContext im
             $sub[] = $sub_link->getText();
             $counts = count($sub);
         }
-        for ($i = 0; $i < $counts ; $i++) {
-            if( $sub[$i] != $expected_result[$i]){
+        for ($i = 0; $i < $counts; $i++) {
+            if ($sub[$i] != $expected_result[$i]) {
                 throw new Exception ("Sub links not found");
             }
 
         }
     }
 
+    /**
+     * @Given /^I should see the following under "([^"]*)" in sidebar$/
+     */
+    public function iShouldSeeTheFollowingUnderInSidebar($arg1, TableNode $table)
+    {
+        $expected_result = [];
+        $counts = 0;
+        $table = $table->getRows();
+        foreach ($table as $row) {
+            $expected_result[] = $row[0];
+        }
+        $sub_links = $this->getSession()->getPage()->findAll('css', ".last .sublist li a");
+        foreach ($sub_links as $sub_link) {
+            $sub[] = $sub_link->getText();
+            $counts = count($sub);
+        }
+        for ($i = 0; $i < $counts; $i++) {
+            if ($sub[$i] != $expected_result[$i]) {
+                throw new Exception ("Sub links not found");
+            }
 
+        }
+    }
+
+    /**
+     * @Then /^I should not see the breadcrumb$/
+     */
+    public function iShouldNotSeeTheBreadcrumb()
+    {
+        $no_breadcrumb = $this->getSession()->getPage()->find('css', '.breadcrumb');
+        if (!empty($no_breadcrumb)) {
+            throw new Exception ("Breadcrumb is coming");
+        }
+    }
+
+    /**
+     * @Given /^I should see the "([^"]*)" block$/
+     */
+    public function iShouldSeeTheBlock($path)
+    {
+        $news = $this->getSession()->getPage()->findAll('css', $path);
+        if (empty($news)) {
+            throw new Exception ("Block not found");
+        }
+    }
 }
