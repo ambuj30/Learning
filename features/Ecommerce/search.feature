@@ -24,3 +24,4 @@ Feature: Search functionality
     And I check the box "Advanced search"
 
 
+

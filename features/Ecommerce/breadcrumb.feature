@@ -6,7 +6,7 @@ Feature: Verification of breadcrumb
     Given I am on the homepage
     Then I should not see the breadcrumb
     When I click "Computers"
-    And I should see the breadcrumb as "Home / Computers"
-    And I visit "/notebooks"
-    And I should see the breadcrumb as "Home / Computers / Notebooks"
+    Then I should see the breadcrumb as "Home / Computers"
+    When I visit "/notebooks"
+    Then I should see the breadcrumb as "Home / Computers / Notebooks"
 

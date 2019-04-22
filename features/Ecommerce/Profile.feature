@@ -27,7 +27,6 @@ Feature: Login Process
     Then I press "Save"
 
 
-#  =============================================================================
 
   @validation
   Scenario Outline: Verify Validation on Customer Info
@@ -40,7 +39,6 @@ Feature: Login Process
     And I fill in "Email:" with "<email>"
     Then I press "Save"
     And I should see "<Message>"
-
 
   Examples:
     | Name      |  Lname    | email                 |   Message                  |
