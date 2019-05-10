@@ -19,6 +19,11 @@ default:
         wd_host: localhost:4444/wd/hub
     Drupal\DrupalExtension:
       blackbox: ~
+    Bex\Behat\ScreenshotExtension:
+      image_drivers:
+        local:
+          screenshot_directory: Screenshot
+          clear_screenshot_directory: true
 
 ecommerce:
   suites:
