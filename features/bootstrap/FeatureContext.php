@@ -137,5 +137,14 @@ class FeatureContext extends \Drupal\DrupalExtension\Context\RawDrupalContext im
             throw new Exception ("Sub links are coming under: " . $text);
         }
     }
-    
+
+    /**
+     * @AfterScenario @aftersuite
+     */
+    public function after_scenario()
+    {
+        //this will only run before the scenario with the tag @aftersuite
+         print("Ambuj");
+    }
+
 }
